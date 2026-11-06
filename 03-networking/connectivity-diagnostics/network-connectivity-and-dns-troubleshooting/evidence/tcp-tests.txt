@@ -1,0 +1,59 @@
+# TCP, TLS and HTTP Connectivity Evidence
+
+## TCP port checks
+Commands:
+nc -vz -w 5 archlinux.org 443
+nc -vz -w 5 archlinux.org 80
+nc -vz -w 5 1.1.1.1 443
+
+Results:
+- archlinux.org TCP/443: open.
+- archlinux.org TCP/80: open.
+- 1.1.1.1 TCP/443: open.
+
+Note:
+Netcat displayed reverse DNS lookup warnings for the resolved
+server address. The TCP connection checks still succeeded.
+
+## HTTPS to Arch Linux
+Command:
+curl -4 -I -v --connect-timeout 5 https://archlinux.org
+
+Results:
+- TCP connection established.
+- TLS 1.3 handshake successful.
+- Certificate verification successful.
+- HTTP/2 200 returned.
+
+## HTTPS to Cloudflare
+Command:
+curl -4 -I --connect-timeout 5 https://www.cloudflare.com
+
+Result:
+- HTTP/2 200 returned.
+
+## HTTP redirect
+Command:
+curl -4 -I --connect-timeout 5 http://archlinux.org
+
+Result:
+- HTTP/1.1 301 Moved Permanently.
+- Location header redirects to HTTPS.
+
+## HTTPS with DNS resolution bypassed
+Command:
+curl -4 -I -v --connect-timeout 5 \
+  --resolve archlinux.org:443:<tested-server-ip> \
+  https://archlinux.org
+
+Results:
+- Explicit address mapping used for the request.
+- TCP connection established.
+- TLS 1.3 handshake successful.
+- Certificate verification successful.
+- HTTP/2 200 returned.
+
+Conclusion:
+TCP connectivity to the tested web ports, TLS negotiation,
+certificate verification, and HTTP responses were successful.
+The HTTPS test with an explicit address mapping also succeeded.

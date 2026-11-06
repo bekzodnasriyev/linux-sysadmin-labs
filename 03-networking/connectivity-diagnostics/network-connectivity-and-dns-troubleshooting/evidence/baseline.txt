@@ -1,0 +1,46 @@
+# Network Connectivity and DNS Troubleshooting
+# Date: 2026-11-06
+# Test environment: Kali Linux virtual machine
+
+## Interface state
+Command:
+ip -br link
+
+Sanitized observation:
+- Loopback interface: UNKNOWN state, operational.
+- eth0: UP, LOWER_UP.
+- docker0: DOWN, NO-CARRIER.
+
+## IPv4 addressing
+Command:
+ip -br addr
+
+Sanitized observation:
+- eth0 has a private IPv4 address assigned.
+- docker0 has a private bridge address.
+- No public IPv4 address is assigned directly to eth0.
+
+## IPv4 routing
+Command:
+ip route
+
+Sanitized observation:
+- Default route exists through the VMware virtual gateway.
+- Default route uses eth0.
+- Connected private subnet route exists.
+- Docker bridge route is present but linkdown.
+
+## Initial connectivity
+Commands:
+ping -c 4 <default-gateway>
+ping -c 4 1.1.1.1
+getent ahosts archlinux.org
+
+Results:
+- Default gateway: 4 packets transmitted, 4 received, 0% packet loss.
+- External IPv4 ICMP: 4 packets transmitted, 4 received, 0% packet loss.
+- System name resolution returned IPv4 and IPv6 records for archlinux.org.
+
+Conclusion:
+Initial IPv4 gateway connectivity, external ICMP connectivity,
+and system name resolution were successful.

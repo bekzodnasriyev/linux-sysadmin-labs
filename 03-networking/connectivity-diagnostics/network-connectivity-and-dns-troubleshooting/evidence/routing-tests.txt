@@ -1,0 +1,40 @@
+# Routing and Address Family Investigation
+
+## IPv4 route selection
+Command:
+ip route get 1.1.1.1
+
+Observation:
+- Traffic uses the default gateway.
+- Outgoing interface: eth0.
+- Source address: private IPv4 address assigned to the VM.
+
+## IPv6 interface configuration
+Command:
+ip -6 addr show dev eth0
+
+Observation:
+- eth0 has a link-local IPv6 address.
+- No global IPv6 address was observed.
+
+## IPv6 routing table
+Command:
+ip -6 route
+
+Observation:
+- Link-local routes exist.
+- No IPv6 default route exists.
+
+## IPv6 HTTPS test
+Command:
+curl -6 -I -v --connect-timeout 5 https://archlinux.org
+
+Result:
+- DNS returned an AAAA record.
+- Connection failed immediately with:
+  Network is unreachable.
+
+Conclusion:
+IPv6 name resolution works, but the VM has no IPv6 default route.
+External IPv6 connectivity was therefore unavailable during testing.
+This is an observed configuration limitation, not a confirmed fault.
