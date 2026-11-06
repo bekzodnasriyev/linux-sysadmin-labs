@@ -1,0 +1,36 @@
+=== UEFI AVAILABILITY ===
+UEFI detected
+
+=== BOOT IMAGE ===
+/boot/EFI/Linux/arch-linux.efi: PE32+ executable for EFI (application), x86-64 (stripped to external PDB), 12 sections
+
+=== UKI SECTIONS ===
+  0 .text         00017b4e  000000014df92000  000000014df92000  00000400  2**4
+  1 .rodata       00006fe8  000000014dfaa000  000000014dfaa000  00018000  2**2
+  2 .data         000000b8  000000014dfb1000  000000014dfb1000  0001f000  2**4
+  3 .sbat         00000400  000000014dfb2000  000000014dfb2000  0001f200  2**2
+  4 .sdmagic      0000002f  000000014dfb3000  000000014dfb3000  0001f600  2**2
+  5 .reloc        000000b4  000000014dfb4000  000000014dfb4000  0001f800  2**2
+  6 .uname        0000000e  000000014dfb5000  000000014dfb5000  0001fa00  2**2
+  7 .osrel        00000198  000000014dfb6000  000000014dfb6000  0001fc00  2**2
+  8 .cmdline      00000058  000000014dfb7000  000000014dfb7000  0001fe00  2**2
+  9 .splash       0005c572  000000014dfb8000  000000014dfb8000  00020000  2**2
+ 10 .linux        01073200  000000014e015000  000000014e015000  0007c600  2**2
+ 11 .initrd       0177dd9e  000000014f089000  000000014f089000  010ef800  2**2
+
+=== ROOT FILESYSTEM ===
+/dev/nvme0n1p2 ext4 rw,relatime
+
+=== INIT PROCESS ===
+    PID COMMAND         COMMAND
+      1 systemd         /sbin/init
+
+=== DEFAULT SYSTEMD TARGET ===
+graphical.target
+
+=== ACTIVE TARGETS ===
+active
+active
+
+=== KERNEL VERSION ===
+7.2.14-arch1-1

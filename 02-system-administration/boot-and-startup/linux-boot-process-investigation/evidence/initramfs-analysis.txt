@@ -1,0 +1,59 @@
+=== MKINITCPIO HOOKS ===
+HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
+
+=== UKI INITRAMFS METADATA ===
+==> Image: /boot/EFI/Linux/arch-linux.efi
+==> Created with mkinitcpio 42.2
+==> Kernel: 7.2.14-arch1-1
+==> uname: 7.2.14-arch1-1
+==> OS Release: Arch Linux (arch 7.2.14-arch1-1)
+==> Command line: root=PARTUUID=<REDACTED> zswap.enabled=0 rw rootfstype=ext4
+==> Early CPIO: 11.5 MiB
+==> Size: 11.99 MiB
+==> Compressed with: zstd
+  -> Uncompressed size: 36.33 MiB (.329 ratio)
+  -> Estimated decompression time: 0.048s
+
+==> Included modules (36):
+  cec			  i915			  rpmb-core
+  drm_buddy		  idma64		  serio_raw
+  drm_display_helper	  intel-gtt		  spi-intel
+  drm_exec		  intel-lpss		  spi-intel-pci
+  drm_gpusvm_helper	  intel-lpss-pci	  spi-pxa2xx-core
+  drm_gpuvm		  intel-vsec		  spi-pxa2xx-platform
+  drm_suballoc_helper	  mmc_block		  ttm
+  drm_ttm_helper	  mmc_core		  uas
+  dw_dmac		  nvme			  usb-storage
+  gpu-sched		  nvme-auth		  video
+  hid-multitouch	  nvme-core		  wmi
+  i2c-algo-bit		  nvme-keyring		  xe
+
+==> Included binaries (11):
+  blkid			  kmod			  systemd-tmpfiles
+  busybox		  mount			  udevadm
+  e2fsck		  setfont		  umount
+  fsck			  switch_root
+
+==> Early hook run order:
+  udev
+
+==> Hook run order:
+  udev keymap consolefont
+
+==> Cleanup hook run order:
+  udev
+
+
+=== NVME MODULES IN RUNNING SYSTEM ===
+nvme                   77824  2
+nvme_core             294912  3 nvme
+nvme_keyring           20480  1 nvme_core
+nvme_auth              32768  1 nvme_core
+
+=== NVME DRIVER INFORMATION ===
+filename:       /lib/modules/7.2.14-arch1-1/kernel/drivers/nvme/host/nvme.ko.zst
+description:    NVMe host PCIe transport driver
+depends:        nvme-core
+
+=== ROOT FILESYSTEM ===
+/dev/nvme0n1p2 ext4

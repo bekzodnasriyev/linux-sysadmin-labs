@@ -1,0 +1,90 @@
+=== BOOT TIME ===
+Startup finished in 4.292s (firmware) + 4.051s (loader) + 2.097s (kernel) + 8.082s (userspace) = 18.522s
+graphical.target reached after 8.081s in userspace.
+
+=== TOP SERVICE ACTIVATION TIMES ===
+4.423s NetworkManager-wait-online.service
+ 950ms systemd-binfmt.service
+ 720ms thermald.service
+ 663ms vmware.service
+ 633ms docker.service
+ 491ms NetworkManager.service
+ 428ms upower.service
+ 415ms dev-nvme0n1p2.device
+ 376ms proton.VPN.service
+ 204ms ufw.service
+ 196ms systemd-udev-trigger.service
+ 172ms containerd.service
+ 125ms ldconfig.service
+ 108ms systemd-tpm2-setup-early.service
+  92ms systemd-pcrmachine.service
+
+=== GRAPHICAL TARGET CRITICAL CHAIN ===
+The time when unit became active or started is printed after the "@" character.
+The time the unit took to start is printed after the "+" character.
+
+graphical.target @8.081s
+└─power-profiles-daemon.service @8.052s +29ms
+  └─multi-user.target @8.051s
+    └─docker.service @7.417s +633ms
+      └─network-online.target @7.416s
+        └─NetworkManager-wait-online.service @2.992s +4.423s
+          └─NetworkManager.service @2.499s +491ms
+            └─basic.target @2.496s
+              └─systemd-pcrphase-sysinit.service @2.450s +45ms
+                └─sysinit.target @2.432s
+                  └─systemd-binfmt.service @1.481s +950ms
+                    └─proc-sys-fs-binfmt_misc.mount @2.418s +10ms
+                      └─systemd-journald.socket @354ms +33us
+                        └─system.slice @323ms
+                          └─-.slice @323ms
+
+=== NETWORK ONLINE CRITICAL CHAIN ===
+The time when unit became active or started is printed after the "@" character.
+The time the unit took to start is printed after the "+" character.
+
+network-online.target @7.416s
+└─NetworkManager-wait-online.service @2.992s +4.423s
+  └─NetworkManager.service @2.499s +491ms
+    └─basic.target @2.496s
+      └─systemd-pcrphase-sysinit.service @2.450s +45ms
+        └─sysinit.target @2.432s
+          └─systemd-binfmt.service @1.481s +950ms
+            └─proc-sys-fs-binfmt_misc.mount @2.418s +10ms
+              └─systemd-journald.socket @354ms +33us
+                └─system.slice @323ms
+                  └─-.slice @323ms
+
+=== DOCKER CRITICAL CHAIN ===
+The time when unit became active or started is printed after the "@" character.
+The time the unit took to start is printed after the "+" character.
+
+docker.service +633ms
+└─network-online.target @7.416s
+  └─NetworkManager-wait-online.service @2.992s +4.423s
+    └─NetworkManager.service @2.499s +491ms
+      └─basic.target @2.496s
+        └─systemd-pcrphase-sysinit.service @2.450s +45ms
+          └─sysinit.target @2.432s
+            └─systemd-binfmt.service @1.481s +950ms
+              └─proc-sys-fs-binfmt_misc.mount @2.418s +10ms
+                └─systemd-journald.socket @354ms +33us
+                  └─system.slice @323ms
+                    └─-.slice @323ms
+
+=== OLLAMA CRITICAL CHAIN ===
+The time when unit became active or started is printed after the "@" character.
+The time the unit took to start is printed after the "+" character.
+
+ollama.service @7.417s
+└─network-online.target @7.416s
+  └─NetworkManager-wait-online.service @2.992s +4.423s
+    └─NetworkManager.service @2.499s +491ms
+      └─basic.target @2.496s
+        └─systemd-pcrphase-sysinit.service @2.450s +45ms
+          └─sysinit.target @2.432s
+            └─systemd-binfmt.service @1.481s +950ms
+              └─proc-sys-fs-binfmt_misc.mount @2.418s +10ms
+                └─systemd-journald.socket @354ms +33us
+                  └─system.slice @323ms
+                    └─-.slice @323ms
