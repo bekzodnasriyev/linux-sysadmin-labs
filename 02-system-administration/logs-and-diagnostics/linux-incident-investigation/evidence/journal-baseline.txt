@@ -1,0 +1,27 @@
+PROJECT 05 - JOURNAL BASELINE
+Environment: Arch Linux
+
+systemd-journald:
+- Service state: active
+- Enablement state: static
+
+Journal storage:
+- journalctl --disk-usage: approximately 1.5 GiB
+- /var/log/journal: approximately 1.6 GiB
+- Persistent journal storage present
+
+Configuration:
+- Storage setting not explicitly configured
+- Default Storage=auto behavior applies
+- No explicit SystemMaxUse override found in displayed configuration
+
+Boot history:
+- 94 boot entries, including current boot
+
+Journal segments:
+- Largest displayed segments: approximately 48-56 MiB
+
+Integrity:
+- All files visible in captured journalctl --verify output reported PASS
+- Original output was truncated
+- No claim that every journal file was verified

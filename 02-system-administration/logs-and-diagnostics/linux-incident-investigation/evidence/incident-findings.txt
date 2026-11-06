@@ -1,0 +1,47 @@
+PROJECT 05 - INCIDENT FINDINGS
+Environment: Arch Linux
+
+1. Intel graphics (i915)
+- Unsupported parameter: fastboot=1
+- Removed from /etc/modprobe.d/i915.conf
+- Regenerated initramfs and UKI with mkinitcpio -P
+- After reboot: unknown parameter warning disappeared
+- Remaining intel_bios_init warning
+- Driver initialized and graphical.target active
+- No visible graphics malfunction reported
+
+2. Intel Wi-Fi (iwlwifi)
+- Unsupported parameter: d0i3_disable=0
+- Removed from /etc/modprobe.d/iwlwifi.conf
+- Preserved power_save=1 and uapsd_disable=0
+- After reboot: unsupported parameter warning disappeared
+- Firmware loaded and NetworkManager reported Wi-Fi connected
+
+3. Wireless regulatory database
+- Initial error: regulatory.db not found (ENOENT)
+- wireless-regdb package was initially absent
+- Installed wireless-regdb from Arch Linux repositories
+- Confirmed /usr/lib/firmware/regulatory.db exists
+- After reboot: regulatory.db error no longer appeared
+
+4. SMBus
+- Seven "SMBus is busy" messages
+- All occurred within approximately 5.6 milliseconds during startup
+- i801_smbus driver bound to controller
+- Root cause not established
+
+5. ACPI
+- Missing WIST symbol
+- CNVW.IFUN and CNVW._DSM methods aborted
+- Wi-Fi subsequently initialized and connected
+- Root cause not established
+
+6. Other observations
+- iwlwifi Unhandled alg: 0x707 appeared twice
+- No confirmed functional impact
+- TLP warning indicated competing power-management configuration
+- UFW BLOCK messages were not treated as proof of an attack
+
+Assessment:
+Three configuration/package problems were corrected and verified.
+Remaining hardware-specific warnings are documented as unresolved.

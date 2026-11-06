@@ -1,0 +1,33 @@
+PROJECT 05 - LOG SOURCE ANALYSIS
+Environment: Arch Linux
+
+Historical journal record counts:
+
+user@1000.service: 1,367,005
+vmware.service: 360,747
+kernel: 242,878
+init.scope: 84,900
+NetworkManager.service: 60,177
+session-1.scope: 44,179
+containerd.service: 38,448
+docker.service: 27,768
+
+Recent seven-day record counts:
+
+kernel: 11,176
+user@1000.service: 5,675
+NetworkManager.service: 4,813
+init.scope: 4,609
+vmware.service: 1,997
+archlinux-keyring-wkd-sync.service: 1,568
+session-1.scope: 1,406
+containerd.service: 981
+wpa_supplicant.service: 890
+
+Assessment:
+
+- Historical VMware logging volume was significantly higher than its recent seven-day volume.
+- Kernel was the largest source during the recent seven-day period.
+- Record counts alone do not prove a logging loop or service failure.
+- No confirmed runaway logging process was identified.
+- Counts represent journal records, not unique incidents.
